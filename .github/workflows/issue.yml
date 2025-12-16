@@ -1,4 +1,4 @@
-name: Lint, test and deploy
+name: Run on issue opened workflow
 on:
   issues:
     types: opened
