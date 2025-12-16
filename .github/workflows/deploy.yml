@@ -5,9 +5,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Get the code
-        uses: actions/checkout
+        uses: actions/checkout@v6
       - name: Install nodejs
-        uses: action/setup-node
+        uses: actions/setup-node@v6
       - name: Install deps
         run: npm i
       - name: Lint the project
@@ -17,9 +17,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Get the code
-        uses: actions/checkout
+        uses: actions/checkout@v6
       - name: Install nodejs
-        uses: action/setup-node
+        uses: actions/setup-node@v6
       - name: Install deps
         run: npm i
       - name: Test the project
@@ -29,9 +29,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Get the code
-        uses: actions/checkout
+        uses: actions/checkout@v6
       - name: Install nodejs
-        uses: action/setup-node
+        uses: actions/setup-node@v6
       - name: Install deps
         run: npm i
       - name: Build project
