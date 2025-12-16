@@ -1,0 +1,10 @@
+name: Lint, test and deploy
+on:
+  issues:
+    types: opened
+jobs:
+  show-context:
+    runs-on: windows-latest
+    steps:
+      - name: Display context
+        run: echo "Here is the github context ${{ github }}"

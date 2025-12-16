@@ -1,0 +1,39 @@
+name: Lint, test and deploy
+on: push
+jobs:
+  lint:
+    runs-on: windows-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout
+      - name: Install nodejs
+        uses: action/setup-node
+      - name: Install deps
+        run: npm i
+      - name: Lint the project
+        run: npm run lint
+  test:
+    needs: lint
+    runs-on: windows-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout
+      - name: Install nodejs
+        uses: action/setup-node
+      - name: Install deps
+        run: npm i
+      - name: Test the project
+        run: npm run test
+  deploy:
+    needs: lint
+    runs-on: windows-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout
+      - name: Install nodejs
+        uses: action/setup-node
+      - name: Install deps
+        run: npm i
+      - name: Build project
+        run: npm run build
+      - run: echo 'All steps are done, project is deployed'
