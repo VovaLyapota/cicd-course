@@ -34,4 +34,4 @@ jobs:
       - name: Build the project
         run: npm run build
       - name: Bye message
-        run: echo "All steps are executed - bye"
+        run: echo "All steps are executed - bye bye"
