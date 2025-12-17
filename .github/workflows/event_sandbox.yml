@@ -3,10 +3,18 @@ name: Certain events testing
 on:
   pull_request:
     types: opened
+    branches: main
   issues:
     types:
       - opened
   workflow_dispatch:
+  push:
+    branches:
+      - main # main
+      - "dev-*" # dev-new dev-new-new-new
+      - "feature/**" # feature/new feature/new/with/more/slashes
+    paths-ignore:
+      - ".github/**" # push will trigger workflow only if we push to branches that we defined AND NOT CHANGE ANYTHING in github folder content
 jobs:
   lint:
     runs-on: windows-latest
@@ -26,4 +34,4 @@ jobs:
       - name: Build the project
         run: npm run build
       - name: Bye message
-        run: echo "All steps are executed - bye bye"
+        run: echo "All steps are executed - bye"
