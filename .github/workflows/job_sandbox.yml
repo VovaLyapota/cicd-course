@@ -1,0 +1,49 @@
+name: Certain events testing
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  lint:
+    runs-on: windows-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v6
+      - name: Install nodejs
+        uses: actions/setup-node@v6
+      - name: Install deps
+        run: npm i
+      - name: Lint the project
+        run: npm run lint
+  test:
+    runs-on: windows-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v6
+      - name: Install nodejs
+        uses: actions/setup-node@v6
+      - name: Install deps
+        run: npm i
+      - name: Test the project
+        run: npm run test
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v6
+      - name: Install nodejs
+        uses: actions/setup-node@v6
+      - name: Install deps
+        run: npm i
+      - name: Build the project
+        run: npm run build
+      - name: Upload files
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: |
+            dist
+            package.json
+      - name: Bye message
+        run: echo "All steps are executed - bye bye"
