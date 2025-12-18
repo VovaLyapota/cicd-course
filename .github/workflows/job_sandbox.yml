@@ -1,4 +1,4 @@
-name: Certain events testing
+name: Artifacts testing
 on:
   push:
     branches:
