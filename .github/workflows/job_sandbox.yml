@@ -31,6 +31,8 @@ jobs:
   build:
     needs: test
     runs-on: windows-latest
+    outputs:
+      script-file: ${{ steps.publish.outputs.script-file }}
     steps:
       - name: Get the code
         uses: actions/checkout@v6
@@ -40,13 +42,17 @@ jobs:
         run: npm i
       - name: Build the project
         run: npm run build
+      - name: Publish JS file name
+        id: publish
+        run: find dist/assets/*.js -type f -execdir echo 'source-filename={}' >> $GITHUB_OUTPUT ';'
       - name: Upload files
         uses: actions/upload-artifact@v6
         with:
           name: dist-files
-          path: |
-            dist
-            package.json
+          path: dist
+          # path: |
+          #  dist
+          #  package.json
   deploy:
     needs: build
     runs-on: windows-latest
@@ -57,5 +63,7 @@ jobs:
           name: dist-files
       - name: Show files
         run: ls
+      - name: Output filename
+        run: echo "${{ needs.build.outputs.script-file }}"
       - name: Bye message
         run: echo "All steps are executed - bye bye"
