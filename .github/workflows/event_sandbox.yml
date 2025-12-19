@@ -1,12 +1,12 @@
 name: Certain events testing
 # can use multiple event types by getting them together in brackets: on: [push, workflow_dispatch]
 on:
-  pull_request:
-    types: opened
-    branches: main
-  issues:
-    types:
-      - opened
+  # pull_request:
+  #   types: opened
+  #   branches: main
+  # issues:
+  #   types:
+  #     - opened
   workflow_dispatch:
   push:
     branches:

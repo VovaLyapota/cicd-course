@@ -2,7 +2,7 @@ name: My first workflow
 on: workflow_dispatch
 jobs:
   my-first-job:
-    runs-on: windows-latest 
+    runs-on: windows-latest
     steps:
       - name: My first step
         run: echo "Hi world!"
