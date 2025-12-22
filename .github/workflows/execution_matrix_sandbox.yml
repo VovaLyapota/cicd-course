@@ -10,6 +10,8 @@ jobs:
         include:
           - node-version: 20
           - os: windows-latest
+          - node-version: 20
+          - os: ubuntu-latest
         exclude:
           - node-version: 14
           - os: ubuntu-latest
