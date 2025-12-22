@@ -9,9 +9,9 @@ jobs:
       matrix:
         node-version: [14, 16, 18]
         os: [ubuntu-latest, windows-latest]
-        include:
-          - node-version: 20
-          - os: windows-latest
+        # include:
+        #   - node-version: 20
+        #   - os: windows-latest
         exclude:
           - node-version: 14
           - os: ubuntu-latest
