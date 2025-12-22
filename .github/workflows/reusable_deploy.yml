@@ -10,9 +10,15 @@ on:
     secrets:
       some-secret:
         required: true
+    outputs:
+      result:
+        description: The result of this reusable workflow
+        value: ${{ jobs.deploy.outputs.deploy-outcome }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      deploy-outcome: ${{ steps.set-res-id.outputs.step-result }}
     steps:
       - name: Download files
         uses: actions/download-artifact@v6
@@ -22,3 +28,6 @@ jobs:
         run: ls
       - name: Happy end
         run: echo "Yeeeeeeeey ${{ secrets.some-secret }}"
+      - name: Set result
+        id: set-res-id
+        run: echo "step-result=success" >> $GITHUB_OUTPUT
