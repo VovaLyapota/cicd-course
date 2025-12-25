@@ -25,5 +25,5 @@ runs:
       shell: bash
     - name: Set cache output
       id: cache-setter
-      run: echo "cache-result='success'" >> $GITHUB_OUTPUTS
+      run: echo "cache-result='success'" >> $GITHUB_OUTPUT
       shell: bash
