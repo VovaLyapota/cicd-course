@@ -23,15 +23,9 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v6
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v5
-        with:
-          path: node_modules
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
+      - name: Get & Cache dependencies
+        id: get-cache
+        uses: ./.github/actions/cache-modules
       - name: Test code
         id: run-tests
         run: npm run test
@@ -47,15 +41,9 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v6
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v5
-        with:
-          path: node_modules
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
+      - name: Get & Cache dependencies
+        id: get-cache
+        uses: ./.github/actions/cache-modules
       - name: Build website
         run: npm run build
       - name: Upload artifacts
