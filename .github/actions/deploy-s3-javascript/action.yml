@@ -1,0 +1,5 @@
+name: Deploy to AWS
+description: Deploy to AWS using custom action based on JS code
+runs:
+  using: "node20"
+  main: "main.js"
