@@ -69,5 +69,7 @@ jobs:
   inform-from-js:
     runs-on: ubuntu-latest
     steps:
+      - name: Get code
+        uses: actions/checkout@v6
       - name: Execute JS custom action
         uses: ./.github/actions/deploy-s3-javascript
