@@ -1,0 +1,29 @@
+name: Get and cache npm modules
+description: Composite action to get and cache npm modules
+inputs:
+  should-cache:
+    description: "Set to false if you do not want cache, for example for the first step where we need to instal depths anyway"
+    required: false
+    default: "true"
+outputs:
+  cached:
+    description: "Whether caching succeeded or not"
+    value: ${{ steps.cache-setter.outputs.cache-result }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v5
+      with:
+        path: node_modules
+        key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+    - name: Install dependencies
+      if: steps.cache.outputs.cache-hit != 'true' || inputs.should-cache != 'true'
+      run: npm ci
+      shell: bash
+    - name: Set cache output
+      id: cache-setter
+      run: echo "cache-result='success'" >> $GITHUB_OUTPUTS
+      shell: bash
