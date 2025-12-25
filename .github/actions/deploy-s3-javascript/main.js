@@ -17,7 +17,7 @@ function run() {
   } catch (error) {
     exec.exec(`echo "${error.message || "Something gone wrong :("}"`);
   }
-  core.setOutput("website-url", "http://my-website-url");
+  core.setOutput("web-url", "http://my-website-url");
   core.notice("Hello from JS action - THATS WOWWWW");
 }
 
