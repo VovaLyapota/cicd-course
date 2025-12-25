@@ -58,6 +58,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v6
       - name: Get build artifacts
+        id: build-artifact
         uses: actions/download-artifact@v6
         with:
           name: dist-files
@@ -65,11 +66,11 @@ jobs:
       - name: Output contents
         run: ls
       - name: Deploy site
-        run: echo "Deploying..."
-  inform-from-js:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/checkout@v6
-      - name: Execute JS custom action
         uses: ./.github/actions/deploy-s3-javascript
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        with:
+          bucket: some-bucket-name
+          bucket-region: some-bucket-region
+          dist-folder: ./dist
