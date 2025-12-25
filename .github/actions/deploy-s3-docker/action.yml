@@ -1,0 +1,20 @@
+name: Deploy to AWS
+description: Deploy to AWS using custom action based on Docker
+inputs:
+  bucket:
+    description: S3 bucket name
+    required: true
+  bucket-region:
+    description: S3 bucket region
+    required: false
+    default: "us-east-1"
+  dist-folder:
+    description: Folder with the actual code
+    required: true
+outputs:
+  web-url:
+    description: Url of web page
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
