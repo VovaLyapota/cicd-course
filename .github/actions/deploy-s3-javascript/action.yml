@@ -12,7 +12,9 @@ inputs:
   dist-folder:
     description: Folder with the actual code
     required: true
-
+outputs:
+  web-url:
+    description: Url of web page
 runs:
   using: "node20"
   main: "main.js"
